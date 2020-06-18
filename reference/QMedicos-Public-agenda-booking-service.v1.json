@@ -401,12 +401,10 @@
       }
     }
   },
-  "securityDefinitions": {
-    "bearerAuth": {
-      "name": "Authorization",
-      "in": "header",
-      "type": "apiKey",
-      "description": "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\""
-    }
-  }
+  "securityDefinitions": {},
+  "schemes": [
+    "https"
+  ],
+  "host": "default.dev.qmedicos.com",
+  "consumes": []
 }
