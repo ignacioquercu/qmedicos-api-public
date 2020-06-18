@@ -32,7 +32,7 @@
           "200": {
             "description": "Success",
             "schema": {
-              "$ref": "#/definitions/ResponseListAvailableAppointment"
+              "$ref": "#/definitions/ResponseListPublicAgendaBooking"
             },
             "examples": {
               "Example response": {
@@ -198,21 +198,8 @@
               "Example response": {
                 "data": [
                   {
-                    "code": "string",
-                    "name": "string",
-                    "description": "string",
-                    "agendas": [
-                      {
-                        "name": "string",
-                        "description": "string",
-                        "doctor": {
-                          "fullName": "string",
-                          "profileImage": "string"
-                        },
-                        "id": "string"
-                      }
-                    ],
-                    "id": "string"
+                    "startDate": "2020-06-18T21:01:27.399Z",
+                    "endDate": "2020-06-18T21:01:27.399Z"
                   }
                 ],
                 "success": true,
@@ -413,20 +400,12 @@
       "description": "Agenda data",
       "x-examples": {
         "Example model": {
-          "code": "string",
           "name": "string",
           "description": "string",
-          "agendas": [
-            {
-              "name": "string",
-              "description": "string",
-              "doctor": {
-                "fullName": "string",
-                "profileImage": "string"
-              },
-              "id": "string"
-            }
-          ],
+          "doctor": {
+            "fullName": "string",
+            "profileImage": "string"
+          },
           "id": "string"
         }
       }
@@ -518,21 +497,8 @@
         "Example model": {
           "data": [
             {
-              "code": "string",
-              "name": "string",
-              "description": "string",
-              "agendas": [
-                {
-                  "name": "string",
-                  "description": "string",
-                  "doctor": {
-                    "fullName": "string",
-                    "profileImage": "string"
-                  },
-                  "id": "string"
-                }
-              ],
-              "id": "string"
+              "startDate": "2020-06-18T21:04:15.512Z",
+              "endDate": "2020-06-18T21:04:15.512Z"
             }
           ],
           "success": true,
@@ -633,6 +599,58 @@
       },
       "title": "CreateAppointmentRequest",
       "description": "Model to create an appointment request"
+    },
+    "ResponseListPublicAgendaBooking": {
+      "title": "ResponseListAgenda",
+      "type": "object",
+      "x-examples": {
+        "Example model": {
+          "data": [
+            {
+              "code": "string",
+              "name": "string",
+              "description": "string",
+              "agendas": [
+                {
+                  "name": "string",
+                  "description": "string",
+                  "doctor": {
+                    "fullName": "string",
+                    "profileImage": "string"
+                  },
+                  "id": "string"
+                }
+              ],
+              "id": "string"
+            }
+          ],
+          "success": true,
+          "errors": [
+            {
+              "fieldName": "string",
+              "errorMessage": "string",
+              "valueReceived": {}
+            }
+          ]
+        }
+      },
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PublicAgendaBooking"
+          }
+        },
+        "success": {
+          "type": "boolean"
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Error"
+          }
+        }
+      }
     }
   },
   "securityDefinitions": {},
