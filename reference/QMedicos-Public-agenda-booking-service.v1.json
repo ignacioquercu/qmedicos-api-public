@@ -8,9 +8,6 @@
   "paths": {
     "/api/services/public/ApiPublicAgendaBooking/GetAllListAsync": {
       "get": {
-        "tags": [
-          "ApiPublicAgendaBooking"
-        ],
         "operationId": "GetAllListAsync",
         "consumes": [],
         "produces": [
@@ -68,14 +65,14 @@
           }
         },
         "summary": "Get all list",
-        "description": "Get the list of all agendas published by code"
+        "description": "Get the list of all agendas published by code",
+        "tags": [
+          "API Services"
+        ]
       }
     },
     "/api/services/public/ApiPublicAgendaBooking/ValidateAvailableAsync": {
       "get": {
-        "tags": [
-          "ApiPublicAgendaBooking"
-        ],
         "operationId": "ValidateAvailableAsync",
         "consumes": [],
         "produces": [
@@ -139,14 +136,14 @@
           }
         },
         "description": "Validate availability based on the parameters sent",
-        "summary": "Validate available"
+        "summary": "Validate available",
+        "tags": [
+          "API Services"
+        ]
       }
     },
     "/api/services/public/ApiPublicAgendaBooking/GetAvailabilityAsync": {
       "get": {
-        "tags": [
-          "ApiPublicAgendaBooking"
-        ],
         "operationId": "GetAvailabilityAsync",
         "consumes": [],
         "produces": [
@@ -215,7 +212,10 @@
           }
         },
         "summary": "Get availables",
-        "description": "Get the list of available spaces by agenda"
+        "description": "Get the list of available spaces by agenda",
+        "tags": [
+          "API Services"
+        ]
       }
     },
     "/api/services/public/ApiPublicAgendaBooking/CreateAsync": {
@@ -292,7 +292,7 @@
         "summary": "Create appointment request",
         "description": "Create an appointment request",
         "tags": [
-          "ApiPublicAgendaBooking"
+          "API Services"
         ]
       }
     }
@@ -348,7 +348,10 @@
           ],
           "id": "string"
         }
-      }
+      },
+      "x-tags": [
+        "Schemas"
+      ]
     },
     "Error": {
       "type": "object",
@@ -374,7 +377,10 @@
           "errorMessage": "string",
           "valueReceived": "object"
         }
-      }
+      },
+      "x-tags": [
+        "Schemas"
+      ]
     },
     "Agenda": {
       "type": "object",
@@ -408,7 +414,10 @@
           },
           "id": "string"
         }
-      }
+      },
+      "x-tags": [
+        "Schemas"
+      ]
     },
     "Doctor": {
       "type": "object",
@@ -429,7 +438,10 @@
           "fullName": "string",
           "profileImage": "string"
         }
-      }
+      },
+      "x-tags": [
+        "Schemas"
+      ]
     },
     "ResponseBoolean": {
       "type": "object",
@@ -465,7 +477,10 @@
             }
           ]
         }
-      }
+      },
+      "x-tags": [
+        "Schemas"
+      ]
     },
     "ResponseListAvailableAppointment": {
       "type": "object",
@@ -510,7 +525,10 @@
             }
           ]
         }
-      }
+      },
+      "x-tags": [
+        "Schemas"
+      ]
     },
     "AvailableAppointment": {
       "type": "object",
@@ -532,7 +550,10 @@
           "format": "date-time",
           "description": "End date and time of available space"
         }
-      }
+      },
+      "x-tags": [
+        "Schemas"
+      ]
     },
     "CreateAppointmentRequest": {
       "type": "object",
@@ -610,6 +631,9 @@
         "email",
         "startDate",
         "endDate"
+      ],
+      "x-tags": [
+        "Schemas"
       ]
     },
     "ResponseListPublicAgendaBooking": {
@@ -662,7 +686,10 @@
             "$ref": "#/definitions/Error"
           }
         }
-      }
+      },
+      "x-tags": [
+        "Schemas"
+      ]
     }
   },
   "securityDefinitions": {},
