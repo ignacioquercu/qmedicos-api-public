@@ -2,7 +2,8 @@
   "swagger": "2.0",
   "info": {
     "version": "v1",
-    "title": "QMedicos API"
+    "title": "QMedicos API",
+    "description": "Public service to search for available appointments and request them"
   },
   "paths": {
     "/api/services/public/ApiPublicAgendaBooking/GetAllListAsync": {
@@ -32,6 +33,37 @@
             "description": "Success",
             "schema": {
               "$ref": "#/definitions/ResponseListAvailableAppointment"
+            },
+            "examples": {
+              "Example response": {
+                "data": [
+                  {
+                    "code": "string",
+                    "name": "string",
+                    "description": "string",
+                    "agendas": [
+                      {
+                        "name": "string",
+                        "description": "string",
+                        "doctor": {
+                          "fullName": "string",
+                          "profileImage": "string"
+                        },
+                        "id": "string"
+                      }
+                    ],
+                    "id": "string"
+                  }
+                ],
+                "success": true,
+                "errors": [
+                  {
+                    "fieldName": "string",
+                    "errorMessage": "string",
+                    "valueReceived": {}
+                  }
+                ]
+              }
             }
           }
         },
@@ -90,6 +122,19 @@
             "description": "Success",
             "schema": {
               "$ref": "#/definitions/ResponseBoolean"
+            },
+            "examples": {
+              "Example response": {
+                "data": true,
+                "success": true,
+                "errors": [
+                  {
+                    "fieldName": "string",
+                    "errorMessage": "string",
+                    "valueReceived": {}
+                  }
+                ]
+              }
             }
           }
         },
@@ -148,6 +193,37 @@
             "description": "Success",
             "schema": {
               "$ref": "#/definitions/ResponseListAvailableAppointment"
+            },
+            "examples": {
+              "Example response": {
+                "data": [
+                  {
+                    "code": "string",
+                    "name": "string",
+                    "description": "string",
+                    "agendas": [
+                      {
+                        "name": "string",
+                        "description": "string",
+                        "doctor": {
+                          "fullName": "string",
+                          "profileImage": "string"
+                        },
+                        "id": "string"
+                      }
+                    ],
+                    "id": "string"
+                  }
+                ],
+                "success": true,
+                "errors": [
+                  {
+                    "fieldName": "string",
+                    "errorMessage": "string",
+                    "valueReceived": {}
+                  }
+                ]
+              }
             }
           }
         },
@@ -176,6 +252,32 @@
             "required": false,
             "schema": {
               "$ref": "#/definitions/CreateAppointmentRequest"
+            },
+            "x-examples": {
+              "Example body request": {
+                "code": "string",
+                "agendaId": "string",
+                "identificationNumber": "string",
+                "name": "string",
+                "firstSurname": "string",
+                "secondSurname": "string",
+                "telephone": "string",
+                "email": "string",
+                "startDate": "2020-06-18T20:31:09.826Z",
+                "endDate": "2020-06-18T20:31:09.826Z"
+              }
+            },
+            "description": ""
+          },
+          {
+            "name": "input",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CreateAppointmentRequest"
+            },
+            "x-examples": {
+              "example-1": {}
             }
           }
         ],
@@ -184,6 +286,19 @@
             "description": "Success",
             "schema": {
               "$ref": "#/definitions/ResponseBoolean"
+            },
+            "examples": {
+              "Example response": {
+                "data": true,
+                "success": true,
+                "errors": [
+                  {
+                    "fieldName": "string",
+                    "errorMessage": "string",
+                    "valueReceived": {}
+                  }
+                ]
+              }
             }
           }
         },
@@ -227,6 +342,25 @@
           "type": "string",
           "description": "Identifier of public agenda booking"
         }
+      },
+      "x-examples": {
+        "Example model": {
+          "code": "string",
+          "name": "string",
+          "description": "string",
+          "agendas": [
+            {
+              "name": "string",
+              "description": "string",
+              "doctor": {
+                "name": "string",
+                "profileImage": "string"
+              },
+              "id": "string"
+            }
+          ],
+          "id": "string"
+        }
       }
     },
     "Error": {
@@ -245,6 +379,13 @@
         "valueReceived": {
           "type": "object",
           "description": "Value received"
+        }
+      },
+      "x-examples": {
+        "Example model": {
+          "fieldName": "string",
+          "errorMessage": "string",
+          "valueReceived": "object"
         }
       }
     },
@@ -268,6 +409,26 @@
           "type": "string",
           "description": "Agenda indetifier"
         }
+      },
+      "description": "Agenda data",
+      "x-examples": {
+        "Example model": {
+          "code": "string",
+          "name": "string",
+          "description": "string",
+          "agendas": [
+            {
+              "name": "string",
+              "description": "string",
+              "doctor": {
+                "fullName": "string",
+                "profileImage": "string"
+              },
+              "id": "string"
+            }
+          ],
+          "id": "string"
+        }
       }
     },
     "Doctor": {
@@ -282,6 +443,12 @@
         "profileImage": {
           "type": "string",
           "description": "Profile photo of the doctor"
+        }
+      },
+      "x-examples": {
+        "Example model": {
+          "fullName": "string",
+          "profileImage": "string"
         }
       }
     },
@@ -306,7 +473,20 @@
         }
       },
       "description": "Server response model",
-      "title": "ResponseBoolean"
+      "title": "ResponseBoolean",
+      "x-examples": {
+        "Example model": {
+          "data": true,
+          "success": true,
+          "errors": [
+            {
+              "fieldName": "string",
+              "errorMessage": "string",
+              "valueReceived": {}
+            }
+          ]
+        }
+      }
     },
     "ResponseListAvailableAppointment": {
       "type": "object",
@@ -333,21 +513,59 @@
             "$ref": "#/definitions/Error"
           }
         }
+      },
+      "x-examples": {
+        "Example model": {
+          "data": [
+            {
+              "code": "string",
+              "name": "string",
+              "description": "string",
+              "agendas": [
+                {
+                  "name": "string",
+                  "description": "string",
+                  "doctor": {
+                    "fullName": "string",
+                    "profileImage": "string"
+                  },
+                  "id": "string"
+                }
+              ],
+              "id": "string"
+            }
+          ],
+          "success": true,
+          "errors": [
+            {
+              "fieldName": "string",
+              "errorMessage": "string",
+              "valueReceived": {}
+            }
+          ]
+        }
       }
     },
     "AvailableAppointment": {
       "type": "object",
       "description": "Availability data",
+      "x-examples": {
+        "Example model": {
+          "startDate": "2020-06-18T20:31:09.826Z",
+          "endDate": "2020-06-18T20:31:09.826Z"
+        }
+      },
       "properties": {
         "startDate": {
-          "format": "date-time",
-          "type": "string",
-          "description": "Start date and time of available space"
+          "description": "Start date and time of available space",
+          "type": "string"
         },
         "endDate": {
-          "format": "date-time",
           "type": "string",
-          "description": "End date and time of available space"
+          "format": "date-time",
+          "description": "End date and time of available space",
+          "example": "2020/12/31",
+          "default": "null"
         }
       }
     },
@@ -398,7 +616,23 @@
           "type": "string",
           "description": "Appointment end date"
         }
-      }
+      },
+      "x-examples": {
+        "Example model": {
+          "code": "string",
+          "agendaId": "string",
+          "identificationNumber": "string",
+          "name": "string",
+          "firstSurname": "string",
+          "secondSurname": "string",
+          "telephone": "string",
+          "email": "string",
+          "startDate": "2020-06-18T20:31:09.826Z",
+          "endDate": "2020-06-18T20:31:09.826Z"
+        }
+      },
+      "title": "CreateAppointmentRequest",
+      "description": "Model to create an appointment request"
     }
   },
   "securityDefinitions": {},
@@ -406,10 +640,6 @@
     "https"
   ],
   "host": "default.dev.qmedicos.com",
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ]
+  "consumes": [],
+  "produces": []
 }
