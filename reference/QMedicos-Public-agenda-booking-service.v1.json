@@ -1,0 +1,412 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v1",
+    "title": "QMedicos API"
+  },
+  "paths": {
+    "/api/services/public/ApiPublicAgendaBooking/GetAllListAsync": {
+      "get": {
+        "tags": [
+          "ApiPublicAgendaBooking"
+        ],
+        "operationId": "GetAllListAsync",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uuid",
+            "description": "The generated code is sent"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ResponseListAvailableAppointment"
+            }
+          }
+        },
+        "summary": "Get all list",
+        "description": "Get the list of all agendas published by code"
+      }
+    },
+    "/api/services/public/ApiPublicAgendaBooking/ValidateAvailableAsync": {
+      "get": {
+        "tags": [
+          "ApiPublicAgendaBooking"
+        ],
+        "operationId": "ValidateAvailableAsync",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "Code",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uuid",
+            "description": "The generated code is sent"
+          },
+          {
+            "name": "AgendaId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uuid",
+            "description": "The agenda identifier is sent"
+          },
+          {
+            "name": "StartDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time",
+            "description": "A start date is sent"
+          },
+          {
+            "name": "EndDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time",
+            "description": "An end date is sent"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ResponseBoolean"
+            }
+          }
+        },
+        "description": "Validate availability based on the parameters sent",
+        "summary": "Validate available"
+      }
+    },
+    "/api/services/public/ApiPublicAgendaBooking/GetAvailabilityAsync": {
+      "get": {
+        "tags": [
+          "ApiPublicAgendaBooking"
+        ],
+        "operationId": "GetAvailabilityAsync",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "Code",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uuid",
+            "description": "The generated code is sent"
+          },
+          {
+            "name": "AgendaId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uuid",
+            "description": "The agenda identifier is sent"
+          },
+          {
+            "name": "StartDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time",
+            "description": "A start date is sent"
+          },
+          {
+            "name": "EndDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time",
+            "description": "An end date is sent"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ResponseListAvailableAppointment"
+            }
+          }
+        },
+        "summary": "Get availables",
+        "description": "Get the list of available spaces by agenda"
+      }
+    },
+    "/api/services/public/ApiPublicAgendaBooking/CreateAsync": {
+      "post": {
+        "operationId": "CreateAsync",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CreateAppointmentRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ResponseBoolean"
+            }
+          }
+        },
+        "summary": "Create appointment request",
+        "description": "Create an appointment request",
+        "tags": [
+          "ApiPublicAgendaBooking"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "PublicAgendaBooking": {
+      "type": "object",
+      "title": "PublicAgendaBooking",
+      "description": "Public agenda booking information",
+      "properties": {
+        "code": {
+          "format": "uuid",
+          "type": "string",
+          "description": "Code generated from the public agenda"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the public agenda booking"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the public agenda booking"
+        },
+        "agendas": {
+          "uniqueItems": false,
+          "type": "array",
+          "description": "List of associated agendas",
+          "items": {
+            "$ref": "#/definitions/Agenda"
+          }
+        },
+        "id": {
+          "format": "uuid",
+          "type": "string",
+          "description": "Identifier of public agenda booking"
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "title": "Error",
+      "description": "Error details",
+      "properties": {
+        "fieldName": {
+          "type": "string",
+          "description": "Name of the field sent"
+        },
+        "errorMessage": {
+          "type": "string",
+          "description": "Descriptive error message"
+        },
+        "valueReceived": {
+          "type": "object",
+          "description": "Value received"
+        }
+      }
+    },
+    "Agenda": {
+      "type": "object",
+      "title": "Agenda",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Agenda name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Agenda description"
+        },
+        "doctor": {
+          "$ref": "#/definitions/Doctor"
+        },
+        "id": {
+          "format": "uuid",
+          "type": "string",
+          "description": "Agenda indetifier"
+        }
+      }
+    },
+    "Doctor": {
+      "type": "object",
+      "title": "Doctor",
+      "description": "Doctor information",
+      "properties": {
+        "fullName": {
+          "type": "string",
+          "description": "Doctor's full name"
+        },
+        "profileImage": {
+          "type": "string",
+          "description": "Profile photo of the doctor"
+        }
+      }
+    },
+    "ResponseBoolean": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "boolean",
+          "description": "Response data"
+        },
+        "success": {
+          "type": "boolean",
+          "description": "Value indicating whether the response was successful"
+        },
+        "errors": {
+          "uniqueItems": false,
+          "type": "array",
+          "description": "List of errors, if any",
+          "items": {
+            "$ref": "#/definitions/Error"
+          }
+        }
+      },
+      "description": "Server response model",
+      "title": "ResponseBoolean"
+    },
+    "ResponseListAvailableAppointment": {
+      "type": "object",
+      "description": "Server response model",
+      "title": "ResponseListAvailableAppointemnt",
+      "properties": {
+        "data": {
+          "uniqueItems": false,
+          "type": "array",
+          "description": "Response data",
+          "items": {
+            "$ref": "#/definitions/AvailableAppointment"
+          }
+        },
+        "success": {
+          "type": "boolean",
+          "description": "Value indicating whether the response was successful"
+        },
+        "errors": {
+          "uniqueItems": false,
+          "type": "array",
+          "description": "List of errors, if any",
+          "items": {
+            "$ref": "#/definitions/Error"
+          }
+        }
+      }
+    },
+    "AvailableAppointment": {
+      "type": "object",
+      "description": "Availability data",
+      "properties": {
+        "startDate": {
+          "format": "date-time",
+          "type": "string",
+          "description": "Start date and time of available space"
+        },
+        "endDate": {
+          "format": "date-time",
+          "type": "string",
+          "description": "End date and time of available space"
+        }
+      }
+    },
+    "CreateAppointmentRequest": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "format": "uuid",
+          "type": "string",
+          "description": "Code generated"
+        },
+        "agendaId": {
+          "format": "uuid",
+          "type": "string",
+          "description": "Agenda identifier"
+        },
+        "identificationNumber": {
+          "type": "string",
+          "description": "Identification number"
+        },
+        "name": {
+          "type": "string",
+          "description": "Person name"
+        },
+        "firstSurname": {
+          "type": "string",
+          "description": "First surname of the person"
+        },
+        "secondSurname": {
+          "type": "string",
+          "description": "Second surname of the person"
+        },
+        "telephone": {
+          "type": "string",
+          "description": "Telephone of the person"
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the person"
+        },
+        "startDate": {
+          "format": "date-time",
+          "type": "string",
+          "description": "Appointment start date"
+        },
+        "endDate": {
+          "format": "date-time",
+          "type": "string",
+          "description": "Appointment end date"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "bearerAuth": {
+      "name": "Authorization",
+      "in": "header",
+      "type": "apiKey",
+      "description": "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\""
+    }
+  }
+}
