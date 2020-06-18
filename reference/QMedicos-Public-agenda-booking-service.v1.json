@@ -22,7 +22,7 @@
           {
             "name": "code",
             "in": "query",
-            "required": false,
+            "required": true,
             "type": "string",
             "format": "uuid",
             "description": "The generated code is sent"
@@ -87,7 +87,7 @@
           {
             "name": "Code",
             "in": "query",
-            "required": false,
+            "required": true,
             "type": "string",
             "format": "uuid",
             "description": "The generated code is sent"
@@ -95,7 +95,7 @@
           {
             "name": "AgendaId",
             "in": "query",
-            "required": false,
+            "required": true,
             "type": "string",
             "format": "uuid",
             "description": "The agenda identifier is sent"
@@ -103,7 +103,7 @@
           {
             "name": "StartDate",
             "in": "query",
-            "required": false,
+            "required": true,
             "type": "string",
             "format": "date-time",
             "description": "A start date is sent"
@@ -111,7 +111,7 @@
           {
             "name": "EndDate",
             "in": "query",
-            "required": false,
+            "required": true,
             "type": "string",
             "format": "date-time",
             "description": "An end date is sent"
@@ -158,7 +158,7 @@
           {
             "name": "Code",
             "in": "query",
-            "required": false,
+            "required": true,
             "type": "string",
             "format": "uuid",
             "description": "The generated code is sent"
@@ -166,7 +166,7 @@
           {
             "name": "AgendaId",
             "in": "query",
-            "required": false,
+            "required": true,
             "type": "string",
             "format": "uuid",
             "description": "The agenda identifier is sent"
@@ -174,7 +174,7 @@
           {
             "name": "StartDate",
             "in": "query",
-            "required": false,
+            "required": true,
             "type": "string",
             "format": "date-time",
             "description": "A start date is sent"
@@ -182,7 +182,7 @@
           {
             "name": "EndDate",
             "in": "query",
-            "required": false,
+            "required": true,
             "type": "string",
             "format": "date-time",
             "description": "An end date is sent"
@@ -523,20 +523,35 @@
       },
       "properties": {
         "startDate": {
+          "type": "string",
           "description": "Start date and time of available space",
-          "type": "string"
+          "format": "date-time"
         },
         "endDate": {
           "type": "string",
           "format": "date-time",
-          "description": "End date and time of available space",
-          "example": "2020/12/31",
-          "default": "null"
+          "description": "End date and time of available space"
         }
       }
     },
     "CreateAppointmentRequest": {
       "type": "object",
+      "x-examples": {
+        "Example model": {
+          "code": "string",
+          "agendaId": "string",
+          "identificationNumber": "string",
+          "name": "string",
+          "firstSurname": "string",
+          "secondSurname": "string",
+          "telephone": "string",
+          "email": "string",
+          "startDate": "2020-06-18T20:31:09.826Z",
+          "endDate": "2020-06-18T20:31:09.826Z"
+        }
+      },
+      "title": "CreateAppointmentRequest",
+      "description": "Model to create an appointment request",
       "properties": {
         "code": {
           "format": "uuid",
@@ -570,7 +585,8 @@
         },
         "email": {
           "type": "string",
-          "description": "Email address of the person"
+          "description": "Email address of the person",
+          "format": "email"
         },
         "startDate": {
           "format": "date-time",
@@ -583,22 +599,18 @@
           "description": "Appointment end date"
         }
       },
-      "x-examples": {
-        "Example model": {
-          "code": "string",
-          "agendaId": "string",
-          "identificationNumber": "string",
-          "name": "string",
-          "firstSurname": "string",
-          "secondSurname": "string",
-          "telephone": "string",
-          "email": "string",
-          "startDate": "2020-06-18T20:31:09.826Z",
-          "endDate": "2020-06-18T20:31:09.826Z"
-        }
-      },
-      "title": "CreateAppointmentRequest",
-      "description": "Model to create an appointment request"
+      "required": [
+        "code",
+        "agendaId",
+        "identificationNumber",
+        "name",
+        "firstSurname",
+        "secondSurname",
+        "telephone",
+        "email",
+        "startDate",
+        "endDate"
+      ]
     },
     "ResponseListPublicAgendaBooking": {
       "title": "ResponseListAgenda",
